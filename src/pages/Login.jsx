@@ -40,71 +40,74 @@ if (token) {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen 
-                    bg-gradient-to-br from-black via-gray-900 to-black
-                    relative overflow-hidden">
+  <div className="flex items-center justify-center min-h-screen 
+                  bg-gradient-to-br from-black via-gray-900 to-black
+                  relative overflow-hidden px-4">
 
-      {/* Background Glow */}
-      <div className="absolute w-96 h-96 bg-red-600 rounded-full blur-3xl opacity-20 top-10 left-10"></div>
-      <div className="absolute w-96 h-96 bg-blue-600 rounded-full blur-3xl opacity-20 bottom-10 right-10"></div>
+    {/* Background Glow */}
+    <div className="absolute w-72 h-72 sm:w-96 sm:h-96 bg-red-600 rounded-full blur-3xl opacity-20 top-10 left-10"></div>
+    <div className="absolute w-72 h-72 sm:w-96 sm:h-96 bg-blue-600 rounded-full blur-3xl opacity-20 bottom-10 right-10"></div>
 
-      <form 
-        onSubmit={handleLogin} 
-        className="relative backdrop-blur-lg bg-white/10 
-                   border border-white/20 
-                   shadow-2xl rounded-2xl 
-                   p-10 w-96 text-white transition-all duration-300"
+    <form 
+      onSubmit={handleLogin} 
+      className="relative backdrop-blur-lg bg-white/10 
+                 border border-white/20 
+                 shadow-2xl rounded-2xl 
+                 p-6 sm:p-10
+                 w-full max-w-md
+                 text-white transition-all duration-300"
+    >
+      <h1 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 
+                     text-center tracking-wide">
+        Welcome Back 🎬
+      </h1>
+
+      <div className="mb-4 sm:mb-5">
+        <label className="block mb-2 text-sm text-gray-300">
+          Username
+        </label>
+        <input
+          className="w-full p-3 bg-black/40 rounded-lg 
+                     focus:outline-none focus:ring-2 
+                     focus:ring-red-500 transition-all"
+          placeholder="Enter your username"
+          value={username}
+          onChange={e => setUsername(e.target.value)}
+        />
+      </div>
+
+      <div className="mb-5 sm:mb-6">
+        <label className="block mb-2 text-sm text-gray-300">
+          Password
+        </label>
+        <input
+          type="password"
+          className="w-full p-3 bg-black/40 rounded-lg 
+                     focus:outline-none focus:ring-2 
+                     focus:ring-red-500 transition-all"
+          placeholder="Enter your password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+        />
+      </div>
+
+      <button 
+        className="w-full bg-red-600 hover:bg-red-700 
+                   transition-all duration-300 
+                   p-3 rounded-lg font-semibold tracking-wide 
+                   shadow-lg hover:shadow-red-500/40"
       >
-        <h1 className="text-3xl font-bold mb-8 text-center tracking-wide">
-          Welcome Back 🎬
-        </h1>
+        Login
+      </button>
 
-        <div className="mb-5">
-          <label className="block mb-2 text-sm text-gray-300">
-            Username
-          </label>
-          <input
-            className="w-full p-3 bg-black/40 rounded-lg 
-                       focus:outline-none focus:ring-2 
-                       focus:ring-red-500 transition-all"
-            placeholder="Enter your username"
-            value={username}
-            onChange={e => setUsername(e.target.value)}
-          />
-        </div>
-
-        <div className="mb-6">
-          <label className="block mb-2 text-sm text-gray-300">
-            Password
-          </label>
-          <input
-            type="password"
-            className="w-full p-3 bg-black/40 rounded-lg 
-                       focus:outline-none focus:ring-2 
-                       focus:ring-red-500 transition-all"
-            placeholder="Enter your password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-          />
-        </div>
-
-        <button 
-          className="w-full bg-red-600 hover:bg-red-700 
-                     transition-all duration-300 
-                     p-3 rounded-lg font-semibold tracking-wide 
-                     shadow-lg hover:shadow-red-500/40"
-        >
-          Login
-        </button>
-
-        {error && (
-          <p className="text-red-400 mt-4 text-sm text-center">
-            {error}
-          </p>
-        )}
-      </form>
-    </div>
-  )
+      {error && (
+        <p className="text-red-400 mt-4 text-sm text-center">
+          {error}
+        </p>
+      )}
+    </form>
+  </div>
+)
 }
 
 export default Login

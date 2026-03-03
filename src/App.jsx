@@ -42,7 +42,6 @@ function App() {
             }
           />
 
-          {/* ✅ MOVE SEARCH INSIDE ROUTES */}
           <Route
             path="/search"
             element={

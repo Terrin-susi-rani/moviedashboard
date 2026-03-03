@@ -76,11 +76,14 @@ const MovieDetails = () => {
     : 'https://via.placeholder.com/500x750?text=No+Image'
 
   return (
-   <div className="min-h-screen bg-gradient-to-b from-neutral-200 to-neutral-800 dark:from-neutral-900 dark:to-black text-black dark:text-white transition-colors duration-300">
-
-      {/* 🎬 Hero Section */}
-      {/* 🔙 Back Button */}
-<div className="absolute top-3 left-6 z-50 ">
+   <div className="min-h-screen bg-gradient-to-b 
+from-neutral-200 to-neutral-800 
+dark:from-neutral-900 dark:to-black 
+text-black dark:text-white 
+transition-colors duration-300 overflow-hidden">
+     
+    
+<div className="absolute top-4 left-4 md:top-6 md:left-8 z-50">
   <button
     onClick={() => navigate(-1)}
     className="bg-black/600 hover:bg-black text-white px-4 py-2 rounded-full backdrop-blur-md transition"
@@ -88,17 +91,25 @@ const MovieDetails = () => {
     ← Back
   </button>
 </div>
+
       <div
-        className="relative h-[80vh] bg-cover bg-center flex items-end"
+       className="relative h-[60vh] sm:h-[70vh] md:h-[80vh] 
+             bg-cover bg-center flex items-end"
         style={{backgroundImage: `url(${backdropUrl})`}}
       >
         <div className="absolute inset-0 bg-black bg-opacity-70"></div>
 
-        <div className="relative p-10 flex flex-col md:flex-row gap-10">
+        <div className="relative 
+                px-5 sm:px-8 md:px-12 
+                py-8 
+                flex flex-col md:flex-row 
+                gap-6 md:gap-10 
+                items-center md:items-end">
           <img
             src={posterUrl}
             alt={movie.title}
-            className="w-72 rounded-2xl shadow-2xl"
+            className="w-40 sm:w-52 md:w-64 lg:w-72 
+           rounded-2xl shadow-2xl"
           />
 
           <motion.div
@@ -106,13 +117,13 @@ const MovieDetails = () => {
             animate={{opacity: 1, y: 0}}
             transition={{duration: 0.5}}
           >
-            <h1 className="text-4xl font-bold text-white">{movie.title}</h1>
+           <h1 className="text-2xl sm:text-3xl md:text-4xl 
+               font-bold text-white text-center md:text-left">{movie.title}</h1>
 
-            <p
-              className={`mt-4 text-lg text-yellow-400 font-semibold ${getRatingColor(
-                movie.vote_average
-              )}`}
-            >
+            <p className="mt-4 md:mt-6 
+              max-w-full md:max-w-2xl 
+              text-sm sm:text-base 
+              text-gray-300 text-center md:text-left">
               ⭐ {movie.vote_average?.toFixed(1)}
             </p>
 
@@ -139,12 +150,15 @@ const MovieDetails = () => {
       </div>
 
       {/* 🎭 Cast Section */}
-      <div className="px-10 mt-16">
+  <div className="px-5 sm:px-8 md:px-12 mt-12 md:mt-16">
         <h2 className="text-2xl font-bold mb-6">
           🎭 Cast
         </h2>
 
-        <div className="flex gap-6 overflow-x-auto scrollbar-hide pb-4">
+   <div className="flex gap-4 sm:gap-6 
+                overflow-x-auto 
+                scrollbar-hide 
+                pb-4">
           {castLoading
             ? Array(8)
                 .fill()
@@ -161,7 +175,13 @@ const MovieDetails = () => {
           🔥 Similar Movies
         </h2>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+       <div className="grid 
+                grid-cols-2 
+                sm:grid-cols-3 
+                md:grid-cols-4 
+                lg:grid-cols-5 
+                xl:grid-cols-6 
+                gap-4 sm:gap-6">
           {similar.map(movie => (
             <MovieCard key={movie.id} movie={movie} />
           ))}

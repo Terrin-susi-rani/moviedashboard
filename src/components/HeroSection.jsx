@@ -43,91 +43,126 @@ const HeroSection = ({fetchFunction}) => {
     : ""
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+  <div className="relative w-full 
+                  h-[70vh] 
+                  sm:h-[80vh] 
+                  md:h-screen 
+                  overflow-hidden">
 
-      {/* Animated Background */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={movie.id}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.8 }}
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${backdropUrl})` }}
-        />
-      </AnimatePresence>
+    {/* Animated Background */}
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={movie.id}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.8 }}
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${backdropUrl})` }}
+      />
+    </AnimatePresence>
 
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-black/20" />
+    {/* Gradient Overlay */}
+    <div className="absolute inset-0 
+                    bg-gradient-to-r 
+                    from-black via-black/80 
+                    to-black/40 sm:to-transparent" />
 
-      {/* Content */}
-      <div className="absolute inset-0 flex items-center z-10 container mx-auto px-6">
-        <div className="max-w-3xl text-white">
+    {/* Content */}
+    <div className="absolute inset-0 flex items-center z-10 
+                    px-4 sm:px-6 md:px-12">
 
-          <span className="bg-red-600 text-xs px-2 py-1 rounded">
-            TRENDING
-          </span>
+      <div className="max-w-xl md:max-w-3xl text-white">
 
-          <h1 className="text-4xl md:text-6xl font-bold mt-4">
-            {movie.title || movie.name}
-          </h1>
+        <span className="bg-red-600 text-[10px] sm:text-xs px-2 py-1 rounded">
+          TRENDING
+        </span>
 
-          <p className="text-neutral-300 mt-4 line-clamp-3">
-            {movie.overview}
-          </p>
+        <h1 className="text-2xl 
+                       sm:text-3xl 
+                       md:text-5xl 
+                       lg:text-6xl 
+                       font-bold mt-3 sm:mt-4 leading-tight">
+          {movie.title || movie.name}
+        </h1>
 
-          <div className="flex gap-4 mt-6">
-            <button className="bg-red-600 hover:bg-red-700 px-6 py-3 rounded-lg transition">
-              ▶ Watch Now
-            </button>
-            <button className="bg-neutral-800/80 px-6 py-3 rounded-lg border border-neutral-600">
-              + Watchlist
-            </button>
-          </div>
+        <p className="text-neutral-300 
+                      mt-3 sm:mt-4 
+                      text-sm sm:text-base 
+                      line-clamp-2 sm:line-clamp-3 md:line-clamp-4">
+          {movie.overview}
+        </p>
 
+        <div className="flex flex-wrap gap-3 sm:gap-4 mt-4 sm:mt-6">
+          <button className="bg-red-600 hover:bg-red-700 
+                             px-4 sm:px-6 
+                             py-2 sm:py-3 
+                             text-sm sm:text-base 
+                             rounded-lg transition">
+            ▶ Watch Now
+          </button>
+
+          <button className="bg-neutral-800/80 
+                             px-4 sm:px-6 
+                             py-2 sm:py-3 
+                             text-sm sm:text-base 
+                             rounded-lg border border-neutral-600">
+            + Watchlist
+          </button>
         </div>
+
       </div>
-
-      {/* Left Arrow */}
-      <button
-        onClick={() =>
-          setCurrentIndex(
-            (currentIndex - 1 + movies.length) % movies.length
-          )
-        }
-        className="absolute left-6 top-1/2 -translate-y-1/2 text-white text-3xl z-20"
-      >
-        ❮
-      </button>
-
-      {/* Right Arrow */}
-      <button
-        onClick={() =>
-          setCurrentIndex((currentIndex + 1) % movies.length)
-        }
-        className="absolute right-6 top-1/2 -translate-y-1/2 text-white text-3xl z-20"
-      >
-        ❯
-      </button>
-
-      {/* Pagination Dots */}
-      <div className="absolute bottom-10 left-0 right-0 flex justify-center gap-2 z-20">
-        {movies.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentIndex(index)}
-            className={`h-1.5 rounded-full transition-all ${
-              index === currentIndex
-                ? "w-8 bg-red-600"
-                : "w-4 bg-white/40"
-            }`}
-          />
-        ))}
-      </div>
-
     </div>
-  )
+
+    {/* Left Arrow (Hidden on Mobile) */}
+    <button
+      onClick={() =>
+        setCurrentIndex(
+          (currentIndex - 1 + movies.length) % movies.length
+        )
+      }
+      className="hidden sm:block 
+                 absolute left-4 md:left-6 
+                 top-1/2 -translate-y-1/2 
+                 text-white text-2xl md:text-3xl 
+                 z-20"
+    >
+      ❮
+    </button>
+
+    {/* Right Arrow (Hidden on Mobile) */}
+    <button
+      onClick={() =>
+        setCurrentIndex((currentIndex + 1) % movies.length)
+      }
+      className="hidden sm:block 
+                 absolute right-4 md:right-6 
+                 top-1/2 -translate-y-1/2 
+                 text-white text-2xl md:text-3xl 
+                 z-20"
+    >
+      ❯
+    </button>
+
+    {/* Pagination Dots */}
+    <div className="absolute bottom-5 sm:bottom-8 
+                    left-0 right-0 
+                    flex justify-center gap-2 z-20">
+      {movies.map((_, index) => (
+        <button
+          key={index}
+          onClick={() => setCurrentIndex(index)}
+          className={`h-1.5 rounded-full transition-all ${
+            index === currentIndex
+              ? "w-6 sm:w-8 bg-red-600"
+              : "w-3 sm:w-4 bg-white/40"
+          }`}
+        />
+      ))}
+    </div>
+
+  </div>
+)
 }
 
 export default HeroSection

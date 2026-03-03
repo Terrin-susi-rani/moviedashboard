@@ -104,56 +104,90 @@ const MovieCard = ({movie}) => {
 //   )
 return (
   <Link to={`/movie/${movie.id}`}>
-    <div className="relative min-w-[180px] group cursor-pointer transition-all duration-500">
+    <div className="relative group cursor-pointer transition-all duration-500">
 
-      {/* Poster */}
+      {/* Poster Container */}
       <div className="relative overflow-hidden rounded-2xl shadow-xl">
+
         <img
           src={imageUrl}
           alt={movie.title}
-          className="w-full h-[270px] object-cover 
-                     transition-transform duration-500 
-                     group-hover:scale-110"
+          className="
+            w-full 
+            h-[200px] 
+            sm:h-[240px] 
+            md:h-[280px] 
+            object-cover
+            transition-transform duration-500 
+            group-hover:scale-110
+          "
         />
 
-        {/* Glow Effect */}
-        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition duration-500"></div>
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/20 
+                        sm:group-hover:bg-black/40 
+                        transition duration-500">
+        </div>
 
-
-        {/* Overlay Info */}
-        <div className="absolute inset-0 bg-gradient-to-t 
-                        from-black/95 via-black/50 to-transparent 
-                        flex flex-col justify-end 
-                        p-4 opacity-0 group-hover:opacity-100 
-                        transition-all duration-500">
-
-          <div className="translate-y-6 group-hover:translate-y-0 
-                          transition-transform duration-500 space-y-2">
-
-            <h3 className="text-sm font-semibold truncate text-white">
-              {movie.title || movie.name}
-            </h3>
-            
         {/* Rating Badge */}
-        <div className={`absolute top-3 right-3 text-yellow-400 px-2 py-1 rounded-lg text-xs font-bold  ${getRatingColor(movie.vote_average)}`}>
+        <div
+          className={`absolute top-2 right-2 
+                      text-xs sm:text-sm 
+                      px-2 py-1 rounded-lg font-bold
+                      bg-black/70 backdrop-blur
+                      ${getRatingColor(movie.vote_average)}`}
+        >
           ⭐ {movie.vote_average?.toFixed(1)}
         </div>
 
-            <p className="text-xs text-gray-300">
+        {/* Info Section */}
+        <div
+          className="
+            absolute inset-0 
+            bg-gradient-to-t 
+            from-black/95 via-black/50 to-transparent
+            flex flex-col justify-end 
+            p-3 sm:p-4
+            opacity-100 sm:opacity-0 
+            sm:group-hover:opacity-100
+            transition-all duration-500
+          "
+        >
+          <div
+            className="
+              translate-y-0 sm:translate-y-6 
+              sm:group-hover:translate-y-0
+              transition-transform duration-500 
+              space-y-1 sm:space-y-2
+            "
+          >
+            <h3 className="text-xs sm:text-sm font-semibold truncate text-white">
+              {movie.title || movie.name}
+            </h3>
+
+            <p className="text-[10px] sm:text-xs text-gray-300">
               {(movie.release_date || movie.first_air_date)?.slice(0, 4)}
             </p>
 
-            <button className="mt-2 w-full bg-red-600 hover:bg-red-700 
-                               text-white text-xs py-2 rounded-lg 
-                               transition-all duration-300 
-                               shadow-lg hover:shadow-red-500/40">
+            <button
+              className="
+                mt-1 sm:mt-2 
+                w-full 
+                bg-red-600 hover:bg-red-700 
+                text-white 
+                text-[10px] sm:text-xs 
+                py-1.5 sm:py-2 
+                rounded-lg 
+                transition-all duration-300 
+                shadow-lg hover:shadow-red-500/40
+              "
+            >
               ▶ View Details
             </button>
-
           </div>
         </div>
-      </div>
 
+      </div>
     </div>
   </Link>
 )

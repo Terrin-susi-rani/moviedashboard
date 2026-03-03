@@ -8,33 +8,48 @@ import {
 } from '../api/tmdb'
 import HeroSection from '../components/HeroSection'
 
-const Home = () => {
+
+ const Home = () => {
   return (
- <div className="min-h-screen bg-gradient-to-b from-neutral-200 to-neutral-800 dark:from-neutral-900 dark:to-black text-black dark:text-white transition-colors duration-300">
+    <div className="min-h-screen 
+                    bg-gradient-to-b 
+                    from-neutral-200 to-neutral-800 
+                    dark:from-neutral-900 dark:to-black 
+                    text-black dark:text-white 
+                    transition-colors duration-300">
+
       <Navbar />
-      <HeroSection fetchFunction={fetchTrending}/>
-      {/* Hero Section (Trending Background) */}
-      <MovieRow
-        title="🔥 Trending Now"
-        fetchFunction={fetchTrending}
-      />
 
-      <MovieRow
-        title="⭐ Top Rated"
-        fetchFunction={fetchTopRated}
-      />
+      {/* Hero Section */}
+      <HeroSection fetchFunction={fetchTrending} />
 
-      <MovieRow
-        title="🎥 Upcoming"
-        fetchFunction={fetchUpcoming}
-      />
+      {/* Movie Sections */}
+      <div className="px-4 sm:px-6 md:px-10 lg:px-16 space-y-8 sm:space-y-12 pb-10">
+        
+        <MovieRow
+          title="🔥 Trending Now"
+          fetchFunction={fetchTrending}
+        />
 
-      <MovieRow
-        title="📺 Popular TV Shows"
-        fetchFunction={fetchTVShows}
-      />
+        <MovieRow
+          title="⭐ Top Rated"
+          fetchFunction={fetchTopRated}
+        />
+
+        <MovieRow
+          title="🎥 Upcoming"
+          fetchFunction={fetchUpcoming}
+        />
+
+        <MovieRow
+          title="📺 Popular TV Shows"
+          fetchFunction={fetchTVShows}
+        />
+
+      </div>
     </div>
   )
 }
+
 
 export default Home
